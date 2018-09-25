@@ -1,0 +1,45 @@
+{
+  "file_paths": {
+    "kaggle": "../model/kaggle/non_dependency_based_full/w2v_model_full.bin",
+    "yelp" : "../model/yelp/non_dependency_based_gensim/w2v_model.bin",
+    "yelp_full" : "../model/yelp/full/w2v_model.bin",
+    "glove" : "../model/glove/glove.6B.300d.txt.word2vec",
+
+    "fasttext" : "/home/avenir/dataset/wiki.en/wiki.en.vec",
+
+    "500_2_1" : "../model/new_models/w2v_model_1.bin",
+    "300_2_1" : "../model/new_models/w2v_model_2.bin",
+    "600_2_1" : "../model/new_models/w2v_model_3.bin",
+    "500_3_1" : "../model/new_models/w2v_model_4.bin",
+    "500_1_1" : "../model/new_models/w2v_model_5.bin",
+    "500_4_1" : "../model/new_models/w2v_model_6.bin",
+    "500_2_5" : "../model/new_models/w2v_model_7.bin",
+    "500_2_10" : "../model/new_models/w2v_model_8.bin",
+    "500_2_15" : "../model/new_models/w2v_model_9.bin",
+    "500_2_20" : "../model/new_models/w2v_model_10.bin",
+    "500_2_2" : "../model/new_models/w2v_model_11.bin",
+    "500_2_3" : "../model/new_models/w2v_model_12.bin",
+    "500_2_4" : "../model/new_models/w2v_model_13.bin",
+    "300_2_1_10m" : "../model/new_models/w2v_model_10_millions_lines.bin",
+    "all_300"     : "../model/new_models/w2v_model_all_reviews.bin",
+   "all_500" : "../model/new_models/w2v_model_all_reviews_1.bin",
+   "cbow"    : "../model/new_models/w2v_model_14.bin",
+   "old" : "../model/yelp/w2v_model.bin",
+   "old2" : "../model/yelp/full/w2v_model.bin",
+   "old3": "../model/new_models/yelp_review_model.bin",
+   "general":"../model/new_models/GoogleNews-vectors-negative300.bin",
+   "cwindow":"../model/combined/embedding_file_cwindow.bin",
+   "cbow_wang":"../model/combined/embedding_file_cbow.bin",
+   "s_sg":"../model/new_models/embedding_file_s_sg.bin",
+   "wang_r" :"../model/new_models/embedding_file_s_sg_restaurant.bin",
+   "wang_l" :"../model/new_models/embedding_file_s_sg_laptop.bin",
+ "laptopM":"../model/new_models/laptop/laptop_reviews.bin",
+  "con2vec" : "../model/new_models/context2vec.ukwac.model",
+  "swivel": "../model/new_models/vecs.bin",
+  "w2v_general_sub" :"../model/new_models/enwikisub.skip.size300.win10.neg15.sample1e-4.min10.bin",
+  "wang_general_sub" :"../model/new_models/enwikisub.wang.skip.size300.win10.neg5.sample0.min5.bin",
+  "w2v_laptop":"../model/new_models/laptop.skip.size300.win10.neg15.sample1e-4.min10.bin",
+  "wang_laptop":"../model/new_models/laptop.wang.skip.size300.win10.neg5.sample0.min5.bin"
+
+  }
+}

@@ -1,0 +1,131 @@
+import os, json
+
+with open(os.path.join(os.path.dirname(__file__),'constants.json')) as f:
+    constants = json.load(f)
+
+from gensim import models
+from gensim.models import KeyedVectors
+from sklearn.decomposition import PCA
+
+from nltk.stem import WordNetLemmatizer
+wordnet_lemmatizer=WordNetLemmatizer()
+
+#from context_aware_word_embedding import *
+
+data = json.load(open(os.path.join(os.path.dirname(__file__), '../data/outputData.json')))
+
+
+od','service','prices','staff','pizza','atmosphere','menu','place','sushi',"dessert","appetizer","martini","salt","sauce","pepper",'price','wine','drinks','ambience','waiter','decor','meal','fish','table','portions','dishes']
+multigranularAspectsRestaurant=[ "food","service","prices","staff","pizza","atmosphere","menu","place","sushi","price","wine","drinks","ambience","waiter","decor","meal","fish","table","portions","dishes"]
+multigranularAspectsLaptop=["screen","price","keyboard","battery_life","battery","programs","warranty","software","features","service","hard_drive","quality","performance","size","windows","speed","applications","graphics","memory","design"]
+
+
+laptop_groups=['WARRANTY', 'SUPPORT', 'HARDWARE', 'KEYBOARD', 'DISPLAY', 'FANS_COOLING', 'COMPANY', 'CPU', 'MOUSE', 'SOFTWARE','HARD_DISC', 'LAPTOP', 'GRAPHICS', 'PORTS', 'BATTERY', 'SHIPPING', 'MULTIMEDIA_DEVICES', 'MOTHERBOARD', 'OPTICAL_DRIVES', 'MEMORY', 'OS', 'POWER_SUPPLY']
+
+#freqAspects=['chicken', 'chef', 'sandwich', 'music', 'vibe', 'setting', 'waitstaff', 'salmon', 'seafood', 'rice', 'appetizer', 'hostess', 'crust', 'dinner', 'beer', 'delivery', 'location', 'sauce', 'view', 'pasta', 'people', 'martini', 'ingredient', 'server', 'salad', 'manager', 'spot', 'portion', 'wine', 'ambience', 'dessert', 'fish', 'bagel', 'drink', 'waitress', 'menu', 'meal', 'dish', 'decor', 'waiter', 'sushi', 'atmosphere', 'pizza', 'staff', 'place', 'service', 'food']
+freqAspectsRestaurant=['chicken', 'chef', 'sandwich', 'music', 'vibe', 'setting', 'waitstaff', 'salmon', 'seafood', 'rice', 'appetizer', 'hostess', 'crust', 'dinner', 'beer', 'delivery', 'topping', 'location', 'sauce', 'view', 'pasta', 'people', 'martini', 'ingredient', 'server', 'salad', 'manager', 'spot', 'roll', 'portion', 'wine', 'ambience', 'dessert', 'fish', 'bagel', 'drink', 'waitress', 'menu', 'meal', 'dish', 'decor', 'waiter', 'sushi', 'atmosphere', 'pizza', 'staff', 'restaurant', 'place', 'service', 'food']
+freqAspectsLaptop=["charge", "program", "fan", "cost", "design", "use", "memory", "graphic", "work",  "feature", "gaming", "window_7", "keyboard", "window", "speaker", "power_supply", "hard_drive", "iphoto", "quality", "size", "service", "system", "ram", "performance", "price", "battery_life", "operating system", "motherboard", "screen", "key", "look", "value", "mouse", "boot", "speed", "battery", "touchpad", "game", "run", "shipping", "processor", "software", "warranty", "display", "vista", "application","extended_warranty"]
+
+
+apsect_list = ["pizza", "food", "fish", "sushi", "cheese", "topping", "crust", "manager", "waitstaff",
+               "waitress", "staff", "hostess", "server", "delivery", "wine", "drinks", "beer", "martini",
+               "expresso", "coffee", "sangria", "vibe", "ambience", "atmosphere", "decor", "place",
+               "restaurant", "spot", "corona", "establishment", "location"]
+
+    model_vectors = []
+    aspects = []
+
+    model_names= model_names.split(",")
+    word_vectors_combination=[]
+    model_combination=[]
+
+    for model_name in model_names:
+        filename=constants["file_paths"][model_name]
+        if model_name == "glove" or model_name == "fasttext":
+            model = KeyedVectors.load_word2vec_format(os.path.join(os.path.dirname(__file__), filename), binary=False)
+        elif model_name == "s_sg" or model_name == "general" or model_name == "cwindow" or model_name == "cbow_wang" or model_name=="wang_r" or model_name=="wang_l" or model_name=="con2vec" or model_name=="w2v_general_sub" or model_name=="wang_general_sub" or model_name=="w2v_laptop" or model_name=="wang_laptop":
+            model = KeyedVectors.load_word2vec_format(os.path.join(os.path.dirname(__file__), filename), binary=True)
+        else:
+            model = models.Word2Vec.load(os.path.join(os.path.dirname(__file__), filename))
+
+        word_vectors = model.wv
+        word_vectors_combination.append(word_vectors)
+        model_combination.append(model)
+#        try:
+#            print "1"
+#            print model.wv.most_similar(positive=['batter_life'])
+#        except:
+#            a=2
+#        try:
+#           print "2"
+#           print model.wv.most_similar(positive=['batt_life'])
+#        except:
+#           a=2
+#        try:
+#            print "3"
+#
+#            print model.wv.most_similar(positive=['batterylife'])
+#        except:
+#            a=2
+
+
+#uncomment the following to use the aspect list above
+
+   # for d in data:
+   #     aspect = d[0].replace(" ", "_")
+  
+
+    #for aspect in filtered_aspect_list:
+
+#    for aspect in freqAspectsRestaurant:
+       # print aspect
+    for aspect in multigranularAspectsRestaurant:
+
+    # for d in data:
+        # aspect = d[0].replace(" ", "_")
+        if aspect not in aspects:
+            all_contain = True
+            vector=[]
+            for i in range (len(model_combination)):
+                if wordnet_lemmatizer.lemmatize(aspect) not in word_vectors_combination[i].vocab:
+                    if aspect=='hard_drive' or aspect =="battery_life":
+                        print "asking for hard drive"
+                        if aspect=='hard_drive':
+                             vector  =vector+list(model_combination[i][wordnet_lemmatizer.lemmatize('harddrive')])
+
+                        if aspect=='battery_life':
+                             vector  =vector+list(model_combination[i][wordnet_lemmatizer.lemmatize('batteries')])
+                        all_contain=True
+
+                    else:
+		        all_contain = False
+                else:
+                   # if model_name=='general':
+                   #    if aspect=='battery_life':
+                   #         vector  =vector+list(model_combination[i][wordnet_lemmatizer.lemmatize(aspect)])
+
+                    vector  =vector+list(model_combination[i][wordnet_lemmatizer.lemmatize(aspect)])
+            if all_contain:
+                aspects.append(aspect)
+		print aspect
+                model_vectors.append(vector)
+#    pca = PCA(n_components=14)
+#    model_vectors = pca.fit_transform(model_vectors)
+ #   selected=20
+#    print pca.explained_variance_ratio_.cumsum()
+#    for idx, x in enumerate( pca.explained_variance_ratio_.cumsum()):
+#	if x>=0.8:
+#	    selected=idx
+#	    break
+#    print selected
+
+#    pca = PCA(n_components=selected)
+#    model_vectors = pca.fit_transform(model_vectors)
+
+    # # context aware word embeddings with tf-idf weightings
+    # model_vectors, aspects = get_context_aware_wordembeddings(data, model_combination, word_vectors_combination)
+    # pca = PCA(n_components=2)
+    # model_vectors = pca.fit_transform(model_vectors)
+    return model_vectors, aspects
+
+#load_model_vectors('general')
