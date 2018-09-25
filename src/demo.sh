@@ -1,0 +1,2 @@
+python extract_aspects.py
+python run_dendogram_generator.py

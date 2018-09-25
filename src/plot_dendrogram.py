@@ -4,7 +4,7 @@ from matplotlib import pyplot as plt
 from scipy.cluster.hierarchy import dendrogram, to_tree
 import numpy as np
 
-from groundTruthGenerator import *
+#from groundTruthGenerator import *
 
 matplotlib.rcParams['lines.linewidth'] = 5
 matplotlib.rcParams['axes.linewidth'] = 5
@@ -28,7 +28,7 @@ def plot_dendogram(title, y_label, x_label, model, aspect_list, name):
     figure = plt.gcf()
     plt.xticks(rotation=90)
     plt.draw()
-    figure.savefig('../output/' + name)
+    figure.savefig('../output/aspect_dendogram')
 
 def plot_labeled_dendogram(title, y_label, x_label, model, aspects, name):
     plt.figure(figsize=(60, 24))

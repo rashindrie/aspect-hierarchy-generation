@@ -1,6 +1,6 @@
 import os, json
 
-with open(os.path.join('../../hierarchicalclustering/src','constants.json')) as f:
+with open(os.path.join(os.path.dirname(__file__),'constants.json')) as f:
     constants = json.load(f)
 import pickle
 from gensim import models
@@ -33,9 +33,8 @@ def load_model_vectors(model_names):
         word_vectors_combination.append(word_vectors)
         model_combination.append(model)
 
-    with open('aspect_list.txt','rb') as fp:
+    with open('../data/aspect_list.bin','rb') as fp:
 	aspects_list = pickle.load(fp)
-    print aspects_list
 
     for aspect in aspects_list:
 

@@ -101,19 +101,17 @@ def demo_aspect_extraction():
 	"""
 	from main import read_data, get_reviews_for_business, extract_aspects
 
-	file =  open('reviews.txt', 'r') 
+	file =  open('../data/reviews.txt', 'r') 
 	reviews =  file.read()
 
 	print "Extracting aspects..."
 	aspects = extract_aspects(reviews)
-	print "Done."
 
-	print "==========="
 	print "Aspects list:" 
 	for i,aspect in enumerate(aspects):
-		print str(i) + ". " + aspect
+		print aspect  
 
-	with open('aspect_list.txt', 'wb') as fp:
+	with open('../data/aspect_list.bin', 'wb') as fp:
 		pickle.dump(aspects,fp)
 
 if __name__ == "__main__":
