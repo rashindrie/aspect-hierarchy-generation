@@ -168,7 +168,7 @@ class PottsTokenizer(object):
         try:
             import twitter
         except ImportError:
-            print "Apologies. The random tweet functionality requires the Python twitter library: http://code.google.com/p/python-twitter/"
+            print ("Apologies. The random tweet functionality requires the Python twitter library: http://code.google.com/p/python-twitter/")
         from random import shuffle
         api = twitter.Api()
         tweets = api.GetPublicTimeline()
@@ -217,7 +217,7 @@ if __name__ == '__main__':
         )
 
     for s in samples:
-        print "======================================================================"
-        print s
+        print ("======================================================================")
+        print (s)
         tokenized = tok.tokenize(s)
-        print "\n".join(tokenized)
+        print ("\n".join(tokenized))

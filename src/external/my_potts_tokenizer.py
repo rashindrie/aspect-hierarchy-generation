@@ -1,4 +1,4 @@
-from potts_tokenizer import PottsTokenizer
+from src.external.potts_tokenizer import PottsTokenizer
 
 
 class MyPottsTokenizer(PottsTokenizer):
@@ -18,4 +18,4 @@ class MyPottsTokenizer(PottsTokenizer):
 		if isinstance(s, str):
 			return super(MyPottsTokenizer, self).tokenize(s)
 		else:
-			raise TypeError, "Tokenizer got %s, expected str" % type(s)
+			raise (TypeError, "Tokenizer got %s, expected str" % type(s))

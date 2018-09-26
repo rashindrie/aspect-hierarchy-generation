@@ -41,7 +41,7 @@ class NegationSuffixerAdder():
 	A good explanation of negation marking, along with 
 	details of the approach used here can be found at: 
 
-	http://sentiment.christopherpotts.net/lingstruc.html#negation
+	http://sentiment.christopherpotts.net/lingstruc.templates#negation
 
 	As defined in the link above, the basic approach is to 
 	"Append a _NEG suffix to every word appearing between a 

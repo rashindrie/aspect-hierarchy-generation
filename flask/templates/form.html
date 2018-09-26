@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <title>The Materialize Example</title>
+      <meta name = "viewport" content = "width = device-width, initial-scale = 1">
+      <link rel = "stylesheet"
+         href = "https://fonts.googleapis.com/icon?family=Material+Icons">
+      <link rel = "stylesheet"
+         href = "https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/css/materialize.min.css">
+      <script type = "text/javascript"
+         src = "https://code.jquery.com/jquery-2.1.1.min.js"></script>
+      <script src = "https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/js/materialize.min.js">
+      </script>
+   </head>
+
+   <body>
+   <nav>
+    <div class="nav-wrapper blue darken-2">
+      <a href="#" class="brand-logo" style="padding-left: 10px">Avenir</a>
+      <ul id="nav-mobile" class="right hide-on-med-and-down">
+      </ul>
+    </div>
+    </nav>
+
+   <nav>
+    <div class="nav-wrapper blue lighten-1">
+      <div class="col s12">
+        <a href="#" class="breadcrumb" style="padding-left: 5px">Aspect Aggregation</a>
+      </div>
+    </div>
+  </nav>
+
+   <div class="row">
+    <form class="col s12" action="/" method="POST">
+      <div class="row">
+        <div class="input-field col s12">
+          <textarea id="txt_area" class="materialize-textarea" name="txt_area"></textarea>
+          <label for="txt_area">Insert Review Text</label>
+            <button type='button' class="waves-effect waves-light btn blue darken-4"  id ='gen_den'>Generate Dendogram</button>
+            <a class="waves-effect waves-light btn blue darken-4 disabled" onclick="clearText()" id="clear">clear</a>
+            <p id="demo"></p>
+        </div>
+      </div>
+    </form>
+  </div>
+
+   <script>
+       $(document).ready(function() {
+       $('#gen_den').click(function(){
+           $('#gen_den').removeClass("waves-effect waves-light submit").addClass('disabled');
+            $('#clear').removeClass("disabled").addClass('waves-effect waves-light btn blue darken-4');
+            $("#txt_area").prop('disabled','disabled');
+
+            var reviews = $('#txt_area').val();
+            $.ajax({
+            url: "/get_aspects",
+            type: "get",
+            data: {reviews: reviews},
+            success: function(response) {
+                $("#demo").html(response);
+            },
+            error: function(xhr) {
+                $("#demo").html("Error Occurred. Please retry!");
+            }
+            });
+       });
+    });
+
+
+    function clearText() {
+        $('#gen_den').removeClass("disabled").addClass('waves-effect waves-light submit');
+        $('#clear').addClass("disabled").removeClass('waves-effect waves-light submit');
+        document.getElementById("txt_area").disabled=false;
+        document.getElementById("txt_area").value='';
+    }
+
+    </script>
+
+   </body>
+</html>
+
