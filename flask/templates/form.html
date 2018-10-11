@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
    <head>
-      <title>The Materialize Example</title>
+      <title>Avenir</title>
       <meta name = "viewport" content = "width = device-width, initial-scale = 1">
       <link rel = "stylesheet"
          href = "https://fonts.googleapis.com/icon?family=Material+Icons">
@@ -38,9 +38,17 @@
           <label for="txt_area">Insert Review Text</label>
             <button type='button' class="waves-effect waves-light btn blue darken-4"  id ='gen_den'>Generate Dendogram</button>
             <a class="waves-effect waves-light btn blue darken-4 disabled" onclick="clearText()" id="clear">clear</a>
-            <p id="demo"></p>
+
+
         </div>
+
+
       </div>
+        <div class="row">
+            <div class="center-align col s12">
+                <a class="waves-effect waves-light btn purple darken-4" style="visibility: hidden" id="link_to_dendo" href="/get_tree" target="_blank">View Dendrogram</a>
+            </div>
+        </div>
     </form>
   </div>
 
@@ -57,7 +65,9 @@
             type: "get",
             data: {reviews: reviews},
             success: function(response) {
-                $("#demo").html(response);
+                document.getElementById('link_to_dendo').style.visibility='visible';
+                $('#gen_den').removeClass("disabled").addClass('waves-effect waves-light submit');
+                document.getElementById("txt_area").disabled=false;
             },
             error: function(xhr) {
                 $("#demo").html("Error Occurred. Please retry!");
@@ -66,16 +76,13 @@
        });
     });
 
-
     function clearText() {
-        $('#gen_den').removeClass("disabled").addClass('waves-effect waves-light submit');
         $('#clear').addClass("disabled").removeClass('waves-effect waves-light submit');
-        document.getElementById("txt_area").disabled=false;
         document.getElementById("txt_area").value='';
+        document.getElementById("demo").value='';
     }
 
     </script>
 
    </body>
 </html>
-

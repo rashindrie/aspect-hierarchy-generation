@@ -18,7 +18,7 @@ def load_model_vectors(model_names):
     word_vectors_combination=[]
     model_combination=[]
 
-    model_basepath = "../../hierarchicalclustering/src/"
+    model_basepath = "."
     for model_name in model_names:
         filename=os.path.join(model_basepath, constants["file_paths"][model_name])
 

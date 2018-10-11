@@ -3,17 +3,11 @@
 """
 File for aspect extraction functions
 """
-import numpy as np
 import pickle
-import sys
 import nltk
-# >>> nltk.download('averaged_perceptron_tagger')
-
 from collections import Counter
 from nltk.corpus import stopwords
-
 from src.external.my_potts_tokenizer import MyPottsTokenizer
-
 
 def get_sentences(review):
     """
@@ -103,8 +97,8 @@ def demo_aspect_extraction(reviews):
 	"""
     from main import read_data, get_reviews_for_business, extract_aspects
 
-    # file =  open('../data/reviews.txt', 'r')
-    # reviews =  file.read()
+    file =  open('../data/reviews.csv.clean', 'r')
+    reviews =  file.read()
 
     print("Extracting aspects...")
     aspects = extract_aspects(reviews)
