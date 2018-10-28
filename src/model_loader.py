@@ -85,7 +85,7 @@ def load_model_vectors(model_names):
     # model_vectors = pca.fit_transform(model_vectors)
     return model_vectors, aspects
 
-def get_centroid(model_names, names, aspects_list, model_vectors):
+def get_centroid(model_names, names):
     vectors = []
     label = names.split('-')
     model_names = model_names.split(",")
