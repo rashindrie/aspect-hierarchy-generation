@@ -8,7 +8,7 @@ from scipy.cluster.hierarchy import linkage
 
 def get_hierarchy():
     #set the model names to be used for the demo
-    model_name = "wang_r,general"
+    model_name = "general,wang_r"
 
     print("Loading model Vectors")
     model_vectors, aspects = load_model_vectors(model_name)             #load vectors for existing aspects

@@ -52,6 +52,7 @@ def get_Json(model_names, linkage, aspects,model_vectors):
         name = "-".join(sorted(map(str, leafNames)))
         n["title"] = get_centroid(model_names, name, aspects, model_vectors)
         n["subtitle"] = get_reviews(n["title"])
+        n["polarity"] = get_polarity(n["title"])
 
         # n["name"] = name = sorted(map(str, leafNames))[0]
 
@@ -68,8 +69,8 @@ def get_Json(model_names, linkage, aspects,model_vectors):
 #         (key, val) = line.split()
 #         aspect_dict[val] = int(key)
 
+from extract_reviews import dictionary
 def get_reviews(name):
-    from extract_reviews import dictionary
     data = []
     if name in dictionary:
         i = 2 if len(dictionary[name]['text']) > 1 else len(dictionary[name]['text'])
@@ -77,3 +78,25 @@ def get_reviews(name):
             data.append(dictionary[name]['text'][x])
     return data
 
+def get_polarity(name):
+    data = {}
+    negCount = 1
+    posCount = 1
+    neuCount = 1
+    if name in dictionary:
+        temp = dictionary[name]['polarity']
+
+        for t in temp:
+            if t == -1:
+                negCount +=1
+            else:
+                if t == 1:
+                    posCount += 1
+                else:
+                    neuCount += 1
+    sum = posCount + negCount + neuCount
+
+    data['positive'] = round((posCount/float(sum))*100,2)
+    data['negative'] = round((negCount/float(sum))*100,2)
+    data['neutral'] = round((neuCount/float(sum))*100,2)
+    return data

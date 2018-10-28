@@ -120,6 +120,8 @@ def get_centroid(model_names, names, aspects_list, model_vectors):
 
     # word = model_combination[0].similar_by_vector(array(centroid[0]), topn=10, restrict_vocab=None)
     # print word
-    word = model_combination[0].similar_by_vector(array(centroid[0]), topn=1, restrict_vocab=None)
+    pca = PCA(n_components=14)
+    result = pca.fit_transform(model_combination[0])
+    word = result.similar_by_vector(array(centroid[0]), topn=1, restrict_vocab=None)
     print(word[0][0])
     return word[0][0]
