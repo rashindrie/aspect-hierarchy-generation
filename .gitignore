@@ -1,5 +1,6 @@
 .idea/
 *.pyc
 model/
-data/
 src/constants.json
+data/reviews.csv.clean
+data/extrcated_reviews.txt
