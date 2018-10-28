@@ -2,9 +2,16 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-
-    <title>Avenir-Dendrogram</title>
-
+    <title>Avenir</title>
+      <meta name = "viewport" content = "width = device-width, initial-scale = 1">
+      <link rel = "stylesheet"
+         href = "https://fonts.googleapis.com/icon?family=Material+Icons">
+      <link rel = "stylesheet"
+         href = "https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/css/materialize.min.css">
+      <script type = "text/javascript"
+         src = "https://code.jquery.com/jquery-2.1.1.min.js"></script>
+      <script src = "https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/js/materialize.min.js">
+      </script>
     <style>
 
 	.node {
@@ -32,6 +39,21 @@
   </head>
 
   <body>
+<nav>
+    <div class="nav-wrapper blue darken-2">
+      <a href="#" class="brand-logo" style="padding-left: 10px">Avenir</a>
+      <ul id="nav-mobile" class="right hide-on-med-and-down">
+      </ul>
+    </div>
+    </nav>
+
+   <nav>
+    <div class="nav-wrapper blue lighten-1">
+      <div class="col s12">
+        <a href="#" class="breadcrumb" style="padding-left: 5px">Aspect Aggregation</a>
+      </div>
+    </div>
+  </nav>
 
 <!-- load the d3.js library -->
 <script src="http://d3js.org/d3.v3.min.js"></script>
@@ -40,15 +62,42 @@
 
 
 var treeData = [
- {
+    {
     "children": [
         {
             "children": [
                 {
                     "children": [
                         {
-                            "children": [],
-                            "name": "house"
+                            "children": [
+                                {
+                                    "children": [
+                                        {
+                                            "children": [],
+                                            "name": "ice"
+                                        },
+                                        {
+                                            "children": [],
+                                            "name": "water"
+                                        }
+                                    ],
+                                    "name": "ice"
+                                },
+                                {
+                                    "children": [
+                                        {
+                                            "children": [],
+                                            "name": "cream"
+                                        },
+                                        {
+                                            "children": [],
+                                            "name": "chocolate"
+                                        }
+                                    ],
+                                    "name": "cream"
+                                }
+                            ],
+                            "name": "cream"
                         },
                         {
                             "children": [
@@ -56,14 +105,14 @@ var treeData = [
                                     "children": [
                                         {
                                             "children": [],
-                                            "name": "bim"
+                                            "name": "star"
                                         },
                                         {
                                             "children": [],
-                                            "name": "salad"
+                                            "name": "course"
                                         }
                                     ],
-                                    "name": "bim"
+                                    "name": "star"
                                 },
                                 {
                                     "children": [
@@ -71,36 +120,162 @@ var treeData = [
                                             "children": [
                                                 {
                                                     "children": [],
-                                                    "name": "crab"
+                                                    "name": "order"
                                                 },
                                                 {
-                                                    "children": [],
-                                                    "name": "crabmeat"
+                                                    "children": [
+                                                        {
+                                                            "children": [],
+                                                            "name": "dish"
+                                                        },
+                                                        {
+                                                            "children": [],
+                                                            "name": "plate"
+                                                        }
+                                                    ],
+                                                    "name": "dish"
                                                 }
                                             ],
-                                            "name": "crab"
+                                            "name": "order"
                                         },
                                         {
                                             "children": [
                                                 {
-                                                    "children": [],
-                                                    "name": "sushi"
+                                                    "children": [
+                                                        {
+                                                            "children": [],
+                                                            "name": "taste"
+                                                        },
+                                                        {
+                                                            "children": [],
+                                                            "name": "flavor"
+                                                        }
+                                                    ],
+                                                    "name": "taste"
                                                 },
                                                 {
-                                                    "children": [],
-                                                    "name": "fish"
+                                                    "children": [
+                                                        {
+                                                            "children": [
+                                                                {
+                                                                    "children": [],
+                                                                    "name": "spicy"
+                                                                },
+                                                                {
+                                                                    "children": [
+                                                                        {
+                                                                            "children": [],
+                                                                            "name": "rice"
+                                                                        },
+                                                                        {
+                                                                            "children": [
+                                                                                {
+                                                                                    "children": [],
+                                                                                    "name": "chicken"
+                                                                                },
+                                                                                {
+                                                                                    "children": [],
+                                                                                    "name": "shrimp"
+                                                                                }
+                                                                            ],
+                                                                            "name": "chicken"
+                                                                        }
+                                                                    ],
+                                                                    "name": "chicken"
+                                                                }
+                                                            ],
+                                                            "name": "chicken"
+                                                        },
+                                                        {
+                                                            "children": [
+                                                                {
+                                                                    "children": [
+                                                                        {
+                                                                            "children": [],
+                                                                            "name": "steak"
+                                                                        },
+                                                                        {
+                                                                            "children": [
+                                                                                {
+                                                                                    "children": [],
+                                                                                    "name": "meat"
+                                                                                },
+                                                                                {
+                                                                                    "children": [
+                                                                                        {
+                                                                                            "children": [],
+                                                                                            "name": "beef"
+                                                                                        },
+                                                                                        {
+                                                                                            "children": [],
+                                                                                            "name": "pork"
+                                                                                        }
+                                                                                    ],
+                                                                                    "name": "beef"
+                                                                                }
+                                                                            ],
+                                                                            "name": "meat"
+                                                                        }
+                                                                    ],
+                                                                    "name": "meat"
+                                                                },
+                                                                {
+                                                                    "children": [
+                                                                        {
+                                                                            "children": [
+                                                                                {
+                                                                                    "children": [],
+                                                                                    "name": "bread"
+                                                                                },
+                                                                                {
+                                                                                    "children": [],
+                                                                                    "name": "cheese"
+                                                                                }
+                                                                            ],
+                                                                            "name": "bread"
+                                                                        },
+                                                                        {
+                                                                            "children": [
+                                                                                {
+                                                                                    "children": [],
+                                                                                    "name": "sauce"
+                                                                                },
+                                                                                {
+                                                                                    "children": [
+                                                                                        {
+                                                                                            "children": [],
+                                                                                            "name": "salad"
+                                                                                        },
+                                                                                        {
+                                                                                            "children": [],
+                                                                                            "name": "soup"
+                                                                                        }
+                                                                                    ],
+                                                                                    "name": "salad"
+                                                                                }
+                                                                            ],
+                                                                            "name": "sauce"
+                                                                        }
+                                                                    ],
+                                                                    "name": "sauce"
+                                                                }
+                                                            ],
+                                                            "name": "sauce"
+                                                        }
+                                                    ],
+                                                    "name": "chicken"
                                                 }
                                             ],
-                                            "name": "fish"
+                                            "name": "chicken"
                                         }
                                     ],
-                                    "name": "crab"
+                                    "name": "order"
                                 }
                             ],
-                            "name": "bim"
+                            "name": "order"
                         }
                     ],
-                    "name": "bim"
+                    "name": "order"
                 },
                 {
                     "children": [
@@ -111,105 +286,411 @@ var treeData = [
                                         {
                                             "children": [
                                                 {
-                                                    "children": [],
-                                                    "name": "food"
-                                                },
-                                                {
                                                     "children": [
                                                         {
                                                             "children": [],
-                                                            "name": "atmosphere"
+                                                            "name": "bar"
                                                         },
                                                         {
-                                                            "children": [],
-                                                            "name": "service"
+                                                            "children": [
+                                                                {
+                                                                    "children": [],
+                                                                    "name": "area"
+                                                                },
+                                                                {
+                                                                    "children": [],
+                                                                    "name": "room"
+                                                                }
+                                                            ],
+                                                            "name": "area"
                                                         }
                                                     ],
-                                                    "name": "atmosphere"
-                                                }
-                                            ],
-                                            "name": "atmosphere"
-                                        },
-                                        {
-                                            "children": [
-                                                {
-                                                    "children": [],
-                                                    "name": "menu"
+                                                    "name": "bar"
                                                 },
                                                 {
                                                     "children": [
                                                         {
                                                             "children": [],
-                                                            "name": "place"
+                                                            "name": "spot"
                                                         },
                                                         {
-                                                            "children": [],
-                                                            "name": "restaurant"
+                                                            "children": [
+                                                                {
+                                                                    "children": [
+                                                                        {
+                                                                            "children": [],
+                                                                            "name": "place"
+                                                                        },
+                                                                        {
+                                                                            "children": [],
+                                                                            "name": "restaurant"
+                                                                        }
+                                                                    ],
+                                                                    "name": "place"
+                                                                },
+                                                                {
+                                                                    "children": [
+                                                                        {
+                                                                            "children": [],
+                                                                            "name": "location"
+                                                                        },
+                                                                        {
+                                                                            "children": [],
+                                                                            "name": "store"
+                                                                        }
+                                                                    ],
+                                                                    "name": "location"
+                                                                }
+                                                            ],
+                                                            "name": "place"
                                                         }
                                                     ],
                                                     "name": "place"
                                                 }
                                             ],
-                                            "name": "menu"
+                                            "name": "place"
+                                        },
+                                        {
+                                            "children": [
+                                                {
+                                                    "children": [
+                                                        {
+                                                            "children": [],
+                                                            "name": "manager"
+                                                        },
+                                                        {
+                                                            "children": [
+                                                                {
+                                                                    "children": [],
+                                                                    "name": "server"
+                                                                },
+                                                                {
+                                                                    "children": [
+                                                                        {
+                                                                            "children": [],
+                                                                            "name": "waitress"
+                                                                        },
+                                                                        {
+                                                                            "children": [],
+                                                                            "name": "waiter"
+                                                                        }
+                                                                    ],
+                                                                    "name": "waitress"
+                                                                }
+                                                            ],
+                                                            "name": "server"
+                                                        }
+                                                    ],
+                                                    "name": "server"
+                                                },
+                                                {
+                                                    "children": [
+                                                        {
+                                                            "children": [],
+                                                            "name": "music"
+                                                        },
+                                                        {
+                                                            "children": [
+                                                                {
+                                                                    "children": [],
+                                                                    "name": "atmosphere"
+                                                                },
+                                                                {
+                                                                    "children": [
+                                                                        {
+                                                                            "children": [],
+                                                                            "name": "service"
+                                                                        },
+                                                                        {
+                                                                            "children": [],
+                                                                            "name": "staff"
+                                                                        }
+                                                                    ],
+                                                                    "name": "service"
+                                                                }
+                                                            ],
+                                                            "name": "service"
+                                                        }
+                                                    ],
+                                                    "name": "service"
+                                                }
+                                            ],
+                                            "name": "service"
                                         }
                                     ],
-                                    "name": "atmosphere"
+                                    "name": "place"
                                 },
                                 {
                                     "children": [
                                         {
-                                            "children": [],
-                                            "name": "date"
+                                            "children": [
+                                                {
+                                                    "children": [
+                                                        {
+                                                            "children": [],
+                                                            "name": "line"
+                                                        },
+                                                        {
+                                                            "children": [
+                                                                {
+                                                                    "children": [],
+                                                                    "name": "customer"
+                                                                },
+                                                                {
+                                                                    "children": [],
+                                                                    "name": "business"
+                                                                }
+                                                            ],
+                                                            "name": "customer"
+                                                        }
+                                                    ],
+                                                    "name": "customer"
+                                                },
+                                                {
+                                                    "children": [
+                                                        {
+                                                            "children": [],
+                                                            "name": "side"
+                                                        },
+                                                        {
+                                                            "children": [],
+                                                            "name": "couple"
+                                                        }
+                                                    ],
+                                                    "name": "side"
+                                                }
+                                            ],
+                                            "name": "side"
                                         },
                                         {
                                             "children": [
                                                 {
                                                     "children": [],
-                                                    "name": "order"
+                                                    "name": "money"
                                                 },
                                                 {
-                                                    "children": [],
-                                                    "name": "deal"
+                                                    "children": [
+                                                        {
+                                                            "children": [
+                                                                {
+                                                                    "children": [],
+                                                                    "name": "table"
+                                                                },
+                                                                {
+                                                                    "children": [],
+                                                                    "name": "party"
+                                                                }
+                                                            ],
+                                                            "name": "table"
+                                                        },
+                                                        {
+                                                            "children": [
+                                                                {
+                                                                    "children": [],
+                                                                    "name": "review"
+                                                                },
+                                                                {
+                                                                    "children": [
+                                                                        {
+                                                                            "children": [],
+                                                                            "name": "experience"
+                                                                        },
+                                                                        {
+                                                                            "children": [],
+                                                                            "name": "visit"
+                                                                        }
+                                                                    ],
+                                                                    "name": "experience"
+                                                                }
+                                                            ],
+                                                            "name": "experience"
+                                                        }
+                                                    ],
+                                                    "name": "experience"
                                                 }
                                             ],
-                                            "name": "deal"
+                                            "name": "experience"
                                         }
                                     ],
-                                    "name": "date"
+                                    "name": "experience"
                                 }
                             ],
-                            "name": "atmosphere"
+                            "name": "place"
                         },
                         {
                             "children": [
                                 {
-                                    "children": [],
-                                    "name": "someone"
+                                    "children": [
+                                        {
+                                            "children": [],
+                                            "name": "vegas"
+                                        },
+                                        {
+                                            "children": [],
+                                            "name": "town"
+                                        }
+                                    ],
+                                    "name": "vegas"
                                 },
                                 {
                                     "children": [
                                         {
-                                            "children": [],
-                                            "name": "kind"
+                                            "children": [
+                                                {
+                                                    "children": [
+                                                        {
+                                                            "children": [],
+                                                            "name": "coffee"
+                                                        },
+                                                        {
+                                                            "children": [],
+                                                            "name": "tea"
+                                                        }
+                                                    ],
+                                                    "name": "coffee"
+                                                },
+                                                {
+                                                    "children": [
+                                                        {
+                                                            "children": [],
+                                                            "name": "drink"
+                                                        },
+                                                        {
+                                                            "children": [
+                                                                {
+                                                                    "children": [],
+                                                                    "name": "beer"
+                                                                },
+                                                                {
+                                                                    "children": [],
+                                                                    "name": "wine"
+                                                                }
+                                                            ],
+                                                            "name": "beer"
+                                                        }
+                                                    ],
+                                                    "name": "beer"
+                                                }
+                                            ],
+                                            "name": "coffee"
                                         },
                                         {
-                                            "children": [],
-                                            "name": "bit"
+                                            "children": [
+                                                {
+                                                    "children": [
+                                                        {
+                                                            "children": [
+                                                                {
+                                                                    "children": [],
+                                                                    "name": "pizza"
+                                                                },
+                                                                {
+                                                                    "children": [],
+                                                                    "name": "sushi"
+                                                                }
+                                                            ],
+                                                            "name": "pizza"
+                                                        },
+                                                        {
+                                                            "children": [
+                                                                {
+                                                                    "children": [],
+                                                                    "name": "dessert"
+                                                                },
+                                                                {
+                                                                    "children": [
+                                                                        {
+                                                                            "children": [],
+                                                                            "name": "breakfast"
+                                                                        },
+                                                                        {
+                                                                            "children": [
+                                                                                {
+                                                                                    "children": [],
+                                                                                    "name": "lunch"
+                                                                                },
+                                                                                {
+                                                                                    "children": [],
+                                                                                    "name": "dinner"
+                                                                                }
+                                                                            ],
+                                                                            "name": "lunch"
+                                                                        }
+                                                                    ],
+                                                                    "name": "lunch"
+                                                                }
+                                                            ],
+                                                            "name": "lunch"
+                                                        }
+                                                    ],
+                                                    "name": "pizza"
+                                                },
+                                                {
+                                                    "children": [
+                                                        {
+                                                            "children": [
+                                                                {
+                                                                    "children": [],
+                                                                    "name": "burger"
+                                                                },
+                                                                {
+                                                                    "children": [],
+                                                                    "name": "sandwich"
+                                                                }
+                                                            ],
+                                                            "name": "burger"
+                                                        },
+                                                        {
+                                                            "children": [
+                                                                {
+                                                                    "children": [],
+                                                                    "name": "price"
+                                                                },
+                                                                {
+                                                                    "children": [
+                                                                        {
+                                                                            "children": [],
+                                                                            "name": "menu"
+                                                                        },
+                                                                        {
+                                                                            "children": [
+                                                                                {
+                                                                                    "children": [],
+                                                                                    "name": "food"
+                                                                                },
+                                                                                {
+                                                                                    "children": [],
+                                                                                    "name": "meal"
+                                                                                }
+                                                                            ],
+                                                                            "name": "food"
+                                                                        }
+                                                                    ],
+                                                                    "name": "food"
+                                                                }
+                                                            ],
+                                                            "name": "food"
+                                                        }
+                                                    ],
+                                                    "name": "food"
+                                                }
+                                            ],
+                                            "name": "food"
                                         }
                                     ],
-                                    "name": "bit"
+                                    "name": "food"
                                 }
                             ],
-                            "name": "bit"
+                            "name": "food"
                         }
                     ],
-                    "name": "atmosphere"
+                    "name": "food"
                 }
             ],
-            "name": "atmosphere"
+            "name": "food"
         }
     ],
-    "name": "Root1"
+    "name": "Root"
 }
 ];
 
@@ -217,7 +698,7 @@ var treeData = [
 // ************** Generate the tree diagram	 *****************
 var margin = {top: 20, right: 120, bottom: 20, left: 120},
 	width = 2000,
-	height = 500;
+	height = 1000;
 
 var i = 0,
 	duration = 750,
@@ -227,7 +708,7 @@ var tree = d3.layout.tree()
 	.size([height, width]);
 
 var diagonal = d3.svg.diagonal()
-	.projection(function(d) { return [d.y, d.x]; });
+	.projection(function(d) { return [d.x, d.y]; });
 
 var svg = d3.select("body").append("svg")
 	.attr("width", width + margin.right + margin.left)
@@ -235,9 +716,20 @@ var svg = d3.select("body").append("svg")
   .append("g")
 	.attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-root = treeData[0];
-root.x0 = height / 2;
-root.y0 = 0;
+root = treeData[0].children[0];
+root.y0 = width / 2;
+root.x0 = 0;
+
+function toggleAll(d) {
+    if (d.children) {
+      d.children.forEach(toggleAll);
+      click(d);
+    }
+  }
+
+  // Initialize the collapse tree
+  root.children.forEach(toggleAll);
+  click(root);
 
 update(root);
 
@@ -259,7 +751,7 @@ function update(source) {
   // Enter any new nodes at the parent's previous position.
   var nodeEnter = node.enter().append("g")
 	  .attr("class", "node")
-	  .attr("transform", function(d) { return "translate(" + source.y0 + "," + source.x0 + ")"; })
+	  .attr("transform", function(d) { return "translate(" + source.x0 + "," + source.y0 + ")"; })
 	  .on("click", click);
 
   nodeEnter.append("circle")
@@ -276,11 +768,11 @@ function update(source) {
   // Transition nodes to their new position.
   var nodeUpdate = node.transition()
 	  .duration(duration)
-	  .attr("transform", function(d) { return "translate(" + d.y + "," + d.x + ")"; });
+	  .attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; });
 
   nodeUpdate.select("circle")
 	  .attr("r", 10)
-	  .style("fill", function(d) { return d._children ? "lightsteelblue" : "#fff"; });
+	  .style("fill", function(d) { return d._children ? "#D2A3E8" : "#fff"; });
 
   nodeUpdate.select("text")
 	  .style("fill-opacity", 1);
@@ -288,7 +780,7 @@ function update(source) {
   // Transition exiting nodes to the parent's new position.
   var nodeExit = node.exit().transition()
 	  .duration(duration)
-	  .attr("transform", function(d) { return "translate(" + source.y + "," + source.x + ")"; })
+	  .attr("transform", function(d) { return "translate(" + source.x + "," + source.y + ")"; })
 	  .remove();
 
   nodeExit.select("circle")

@@ -88,7 +88,7 @@ def aspects_from_tagged_sents(tagged_sentences):
                 noun_counter[word] += 1
 
     # list of tuples of form (noun, count)
-    return [noun for noun, _ in noun_counter.most_common(20)]
+    return [[_ ,noun] for noun, _ in noun_counter.most_common(100)]
 
 
 def demo_aspect_extraction(reviews):

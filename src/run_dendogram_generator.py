@@ -7,18 +7,19 @@ def get_hierarchy():
     #set the model names to be used for the demo
     model_name = "wang_r"
 
-    # print("Loading model Vectors")
-    # model_vectors, aspects = load_model_vectors(model_name)             #load vectors for existing aspects
+    print("Loading model Vectors")
+    model_vectors, aspects = load_model_vectors(model_name)             #load vectors for existing aspects
+
+    linkage_matrix = linkage(model_vectors, method='complete', metric="cosine")              #get the linkage matrix
+
+    print("Converting Linkage to Json")
+    get_Json(model_name,linkage_matrix,aspects,model_vectors)
+
+    # import json
     #
-    # linkage_matrix = linkage(model_vectors, method='complete', metric="cosine")              #get the linkage matrix
+    # with open('../output/dendrogram.json') as f:
+    #     data = json.load(f)
     #
-    # print("Converting Linkage to Json")
-    # get_Json(linkage_matrix,aspects)
+    # return json.dumps(data)
 
-    import json
-
-    with open('../output/dendrogram.json') as f:
-        data = json.load(f)
-
-    return json.dumps(data)
-
+get_hierarchy()

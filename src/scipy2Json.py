@@ -1,12 +1,15 @@
 #!/usr/bin/python
+from cmath import polar
 
 import scipy.spatial
 import scipy.cluster
 import json
 import matplotlib.pyplot as plt
+from model_loader import get_centroid
 
-def get_Json(linkage,aspects):
+import gensim
 
+def get_Json(model_names, linkage, aspects,model_vectors):
     T = scipy.cluster.hierarchy.to_tree(linkage, rd=False)
 
     # Create dictionary for labeling nodes by their IDs
@@ -16,7 +19,6 @@ def get_Json(linkage,aspects):
     # Draw dendrogram using matplotlib to scipy-dendrogram.pdf
     scipy.cluster.hierarchy.dendrogram(linkage, labels=aspects, orientation='right')
     plt.savefig("../output/dendrogram.png")
-
 
     # Create a nested dictionary from the ClusterNode's returned by SciPy
     def add_node(node, parent):
@@ -28,11 +30,9 @@ def get_Json(linkage,aspects):
         if node.left: add_node(node.left, newNode)
         if node.right: add_node(node.right, newNode)
 
-
     # Initialize nested dictionary for d3, then recursively iterate through tree
     d3Dendro = dict(children=[], name="Root")
     add_node(T, d3Dendro)
-
 
     # Label each node with the names of each leaf in its subtree
     def label_tree(n):
@@ -49,13 +49,31 @@ def get_Json(linkage,aspects):
         del n["node_id"]
 
         # Labeling convention: "-"-separated leaf names
-        # n["name"] = name = "-".join(sorted(map(str, leafNames)))
-        n["name"] = name = sorted(map(str, leafNames))[0]
+        name = "-".join(sorted(map(str, leafNames)))
+        n["title"] = get_centroid(model_names, name, aspects, model_vectors)
+        n["subtitle"] = get_reviews(n["title"])
+
+        # n["name"] = name = sorted(map(str, leafNames))[0]
 
         return leafNames
 
-
     label_tree(d3Dendro["children"][0])
-
     # Output to JSON
-    json.dump(d3Dendro, open("../output/dendrogram.json", "w"), sort_keys=True, indent=4)
+    json.dump(d3Dendro["children"][0], open("../output/dendrogram.json", "w"), sort_keys=True, indent=4)
+
+
+# aspect_dict = {}
+# with open('../data/aspect_list_with_count.txt') as f:
+#     for line in f:
+#         (key, val) = line.split()
+#         aspect_dict[val] = int(key)
+
+def get_reviews(name):
+    from extract_reviews import dictionary
+    data = []
+    if name in dictionary:
+        i = 2 if len(dictionary[name]['text']) > 1 else len(dictionary[name]['text'])
+        for x in range(0,i):
+            data.append(dictionary[name]['text'][x])
+    return data
+

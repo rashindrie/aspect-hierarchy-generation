@@ -1,5 +1,6 @@
 import os, json
-
+import math
+from numpy import array
 with open(os.path.join(os.path.dirname(__file__),'constants.json')) as f:
     constants = json.load(f)
 import pickle
@@ -33,11 +34,13 @@ def load_model_vectors(model_names):
         word_vectors_combination.append(word_vectors)
         model_combination.append(model)
 
-    with open('../data/aspect_list.bin','rb') as fp:
-	aspects_list = pickle.load(fp)
+    # with open('../data/aspect_list.bin','rb') as fp:
+	 #    aspects_list = pickle.load(fp)
+
+    with open('../data/multi_granular_restaurant.txt') as f:
+        aspects_list = f.read().splitlines()
 
     for aspect in aspects_list:
-
         if aspect not in aspects:
             all_contain = True
             vector=[]
@@ -82,4 +85,41 @@ def load_model_vectors(model_names):
     # model_vectors = pca.fit_transform(model_vectors)
     return model_vectors, aspects
 
-#load_model_vectors('general')
+def get_centroid(model_names, names, aspects_list, model_vectors):
+    vectors = []
+    label = names.split('-')
+
+    for a in label:
+        index = aspects_list.index(a)
+        vectors.append(model_vectors[index])
+
+    model_names = model_names.split(",")
+    word_vectors_combination = []
+    model_combination = []
+
+    model_basepath = "."
+    for model_name in model_names:
+        filename = os.path.join(model_basepath, constants["file_paths"][model_name])
+
+        if model_name == "glove" or model_name == "fasttext":
+            model = KeyedVectors.load_word2vec_format(os.path.join(os.path.dirname(__file__), filename), binary=False)
+        elif model_name == "s_sg" or model_name == "general" or model_name == "cwindow" or model_name == "cbow_wang" or model_name == "wang_r" or model_name == "wang_l" or model_name == "con2vec" or model_name == "w2v_general_sub" or model_name == "wang_general_sub" or model_name == "w2v_laptop" or model_name == "wang_laptop":
+            model = KeyedVectors.load_word2vec_format(os.path.join(os.path.dirname(__file__), filename), binary=True)
+        else:
+            model = models.Word2Vec.load(os.path.join(os.path.dirname(__file__), filename))
+
+        word_vectors = model.wv
+        word_vectors_combination.append(word_vectors)
+        model_combination.append(model)
+
+    print('calculating centroid')
+    print('labels: ', names)
+    calc_centroid = lambda inp: [[math.fsum(m) / float(len(m)) for m in zip(*l)] for l in inp]
+
+    centroid = calc_centroid([vectors])
+
+    # word = model_combination[0].similar_by_vector(array(centroid[0]), topn=10, restrict_vocab=None)
+    # print word
+    word = model_combination[0].similar_by_vector(array(centroid[0]), topn=1, restrict_vocab=None)
+    print(word[0][0])
+    return word[0][0]
