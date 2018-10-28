@@ -66,8 +66,8 @@ def load_model_vectors(model_names):
             if all_contain:
                 aspects.append(aspect)
                 model_vectors.append(vector)
-#    pca = PCA(n_components=14)
-#    model_vectors = pca.fit_transform(model_vectors)
+    pca = PCA(n_components=14)
+    model_vectors = pca.fit_transform(model_vectors)
  #   selected=20
 #    print pca.explained_variance_ratio_.cumsum()
 #    for idx, x in enumerate( pca.explained_variance_ratio_.cumsum()):
@@ -88,12 +88,14 @@ def load_model_vectors(model_names):
 def get_centroid(model_names, names, aspects_list, model_vectors):
     vectors = []
     label = names.split('-')
+    model_names = model_names.split(",")
+
+    model_vectors, aspects_list = load_model_vectors(model_names[0])
 
     for a in label:
         index = aspects_list.index(a)
         vectors.append(model_vectors[index])
 
-    model_names = model_names.split(",")
     word_vectors_combination = []
     model_combination = []
 
@@ -120,8 +122,7 @@ def get_centroid(model_names, names, aspects_list, model_vectors):
 
     # word = model_combination[0].similar_by_vector(array(centroid[0]), topn=10, restrict_vocab=None)
     # print word
-    pca = PCA(n_components=14)
-    result = pca.fit_transform(model_combination[0])
-    word = result.similar_by_vector(array(centroid[0]), topn=1, restrict_vocab=None)
+
+    word = model_combination[0].similar_by_vector(array(centroid[0]), topn=1, restrict_vocab=None)
     print(word[0][0])
     return word[0][0]
