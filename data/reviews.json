@@ -3384,7 +3384,7 @@
               "text": "It is also extremely well priced.",
               "Opinions": {
                 "Opinion": {
-                  "-target": "NULL",
+                  "-target": "price",
                   "-category": "FOOD#PRICES",
                   "-polarity": "positive",
                   "-from": "0",
