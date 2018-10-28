@@ -1,4 +1,5 @@
 .idea/
 *.pyc
 model/
-data/
+data/reviews.csv.clean
+data/extrcated_reviews.txt
