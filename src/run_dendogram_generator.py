@@ -11,7 +11,7 @@ def get_hierarchy():
     model_name = "general,wang_r"
 
     print("Loading model Vectors")
-    model_vectors, aspects = load_model_vectors(model_name)             #load vectors for existing aspects
+    model_vectors, aspects = load_model_vectors(model_name, pca=True)             #load vectors for existing aspects
 
     linkage_matrix = linkage(model_vectors, method='complete', metric="cosine")              #get the linkage matrix
 

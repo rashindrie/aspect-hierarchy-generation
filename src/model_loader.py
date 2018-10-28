@@ -11,7 +11,7 @@ from sklearn.decomposition import PCA
 from nltk.stem import WordNetLemmatizer
 wordnet_lemmatizer=WordNetLemmatizer()
 
-def load_model_vectors(model_names):
+def load_model_vectors(model_names,pca):
     model_vectors = []
     aspects = []
 
@@ -66,8 +66,9 @@ def load_model_vectors(model_names):
             if all_contain:
                 aspects.append(aspect)
                 model_vectors.append(vector)
-    pca = PCA(n_components=14)
-    model_vectors = pca.fit_transform(model_vectors)
+    if(pca==True):
+        pca = PCA(n_components=14)
+        model_vectors = pca.fit_transform(model_vectors)
  #   selected=20
 #    print pca.explained_variance_ratio_.cumsum()
 #    for idx, x in enumerate( pca.explained_variance_ratio_.cumsum()):
@@ -90,7 +91,7 @@ def get_centroid(model_names, names):
     label = names.split('-')
     model_names = model_names.split(",")
 
-    model_vectors, aspects_list = load_model_vectors(model_names[0])
+    model_vectors, aspects_list = load_model_vectors(model_names[0],pca=False)
 
     for a in label:
         index = aspects_list.index(a)
