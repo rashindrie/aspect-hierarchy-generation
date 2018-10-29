@@ -50,9 +50,10 @@ def get_Json(model_names, linkage, aspects,model_vectors):
 
         # Labeling convention: "-"-separated leaf names
         name = "-".join(sorted(map(str, leafNames)))
-        n["title"] = get_centroid(model_names, name).capitalize()
-        n["subtitle"] = get_reviews(n["title"])
-        n["polarity"] = get_polarity(n["title"])
+        name_label = get_centroid(model_names, name)
+        n["title"] = name_label.capitalize()
+        n["subtitle"] = get_reviews(name_label)
+        n["polarity"] = get_polarity(name_label)
 
         # n["name"] = name = sorted(map(str, leafNames))[0]
 
